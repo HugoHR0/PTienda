@@ -20,6 +20,7 @@ class Lector : AppCompatActivity() {
 
         RVCatalogo.layoutManager = LinearLayoutManager(this)
         RVCatalogo.adapter = AdaptadorPrendas(generarDatosPrueba(), this)
+
     }
 
         private fun generarDatosPrueba(): ArrayList<Prenda> {

@@ -7,6 +7,12 @@
     tools:context=".Lector"
     android:layout_height="match_parent">
 
+    <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+        android:id="@+id/carousel"
+        android:layout_width="match_parent"
+        app:autoPlay="true"
+        app:autoPlayDelay="2000"
+        android:layout_height="300dp" />
 
     <Button
         android:id="@+id/btnEscaner"
