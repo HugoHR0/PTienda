@@ -11,6 +11,11 @@ android {
     buildFeatures{
         dataBinding = true
         viewBinding = true
+        repositories {
+            maven { url 'https://oss.sonatype.org/content/repositories/ksoap2-android-releases/' }
+
+        }
+
     }
     
     defaultConfig {
@@ -22,6 +27,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
 
     buildTypes {
         release {
@@ -39,6 +45,8 @@ android {
 }
 
 dependencies {
+
+    implementation 'com.google.code.ksoap2-android:ksoap2-android:3.6.2'
     implementation 'com.google.zxing:core:3.3.0'
     implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

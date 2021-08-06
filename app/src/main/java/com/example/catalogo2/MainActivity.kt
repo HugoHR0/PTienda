@@ -2,8 +2,10 @@ package com.example.catalogo2
 
 import com.example.catalogo2.databinding.ActivityMainBinding
 import android.content.Intent
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -29,8 +31,35 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnEscaner.setOnClickListener { initScanner() }
 
-        binding.btnBuscar.setOnClickListener{val intent = Intent(this,Lector::class.java)
-            startActivity(intent)}
+        //binding.btnBuscar.setOnClickListener{val intent = Intent(this,Lector::class.java)
+           // startActivity(intent)}
+
+        binding.btnBuscar.setOnClickListener {val intent = Intent(this,Lector::class.java)
+            startActivity(intent)
+            val input1 = txtValor.text.toString().trim()
+
+            when {
+                input1.length == 0 -> Toast.makeText(
+                    this,
+
+                    "Escana un codigo primero prro",
+                    Toast.LENGTH_SHORT
+
+                ).show()
+                !Utils.isConnected(this@MainActivity) -> Toast.makeText(
+                    this,
+
+                    "El no hubo internet",
+                    Toast.LENGTH_SHORT
+
+                ).show()
+
+                else -> getCitiesOfCountry().execute(input1)
+
+            }
+        }
+
+
 
         //Carrusel
         val carousel: ImageCarousel = findViewById(R.id.carousel)
@@ -50,6 +79,20 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+
+
+inner class getCitiesOfCountry : AsyncTask<String, String, String>() {
+    //inner class getCitiesOfCountry : AsyncTask<Int, Int, String>() {  --> WSLocal Calculadora
+    override fun doInBackground(vararg params: String?): String {
+
+        val response = CallWebService().callApi(Utils.METHOD_CONS,params[0])//Construye el la petición
+        Log.v("response", "response==" + response)
+        //val aux = response.toString()
+        //Lector().recibirdatos(response)
+        return response //retorna el resultado
+    }
+}
 
 
 
