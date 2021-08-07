@@ -14,8 +14,9 @@ class AdaptadorPrendas(private var lista: ArrayList<Prenda>, private var context
     class ViewHolder(var vista: View, var contexto: Context): RecyclerView.ViewHolder(vista){
         fun bind(prendas: Prenda){
             vista.ImgPrenda.setImageResource(prendas.idPrenda)
-            vista.txtNombre.text = prendas.nombre
-            vista.txtTallas.text = prendas.talla
+            vista.txtNombre.text = "Nombre" + prendas.nombre
+            vista.txtTallas.text = "Talla " + prendas.talla
+
             vista.ImgPrenda.setOnClickListener{
 
             }

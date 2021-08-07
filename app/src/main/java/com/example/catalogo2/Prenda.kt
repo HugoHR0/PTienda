@@ -4,5 +4,9 @@ import java.io.Serializable
 data class Prenda (
     var idPrenda:Int,
     var nombre: String,
-    var talla: String
+    var talla: String,
+    var precio: String,
+    var cantidad: String,
+    var color: String,
+    var imagen: String
     ) : Serializable

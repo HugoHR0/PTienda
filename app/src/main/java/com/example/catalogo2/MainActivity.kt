@@ -88,8 +88,16 @@ inner class getCitiesOfCountry : AsyncTask<String, String, String>() {
 
         val response = CallWebService().callApi(Utils.METHOD_CONS,params[0])//Construye el la petición
         Log.v("response", "response==" + response)
-        //val aux = response.toString()
-        //Lector().recibirdatos(response)
+
+        // Pasaremos de la actividad actual a OtraActivity
+        // Pasaremos de la actividad actual a OtraActivity
+
+        val intent = Intent(this@MainActivity,Lector::class.java)
+        var aux :String = response
+        val b :Bundle = Bundle()
+        b.putString("x",aux)
+        intent.putExtras(b)
+        startActivity(intent)
         return response //retorna el resultado
     }
 }
