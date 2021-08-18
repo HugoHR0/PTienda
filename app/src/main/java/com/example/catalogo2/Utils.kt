@@ -9,7 +9,7 @@ class Utils {
 
         //WSLocal & BD Remota
         val SOAP_URL =
-            "http://192.168.0.7:8080/WSPr1P2/WSBdDatos?wsld"  //--- ip de mi maquina (localhost.......)
+            "http://192.168.0.2:8080/WSPr1P2/WSBdDatos?wsld"  //--- ip de mi maquina (localhost.......)
         val SOAP_NAMESPACE = "http://pkgServicio/"  //--- nombre de mi servicio
         val METHOD_CONS = "WSConsulta"  //--- nombre de mi metodo
         //val METHOD_DEL = "WSEliminar"  //--- nombre de mi metodo

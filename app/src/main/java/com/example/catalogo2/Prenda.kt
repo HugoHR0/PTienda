@@ -8,5 +8,4 @@ data class Prenda (
     var precio: String,
     var cantidad: String,
     var color: String,
-    var imagen: String
     ) : Serializable

@@ -2,6 +2,7 @@ package com.example.catalogo2
 
 import com.example.catalogo2.databinding.ActivityMainBinding
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +15,7 @@ import com.example.catalogo2.databinding.LectorBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
 import com.google.zxing.integration.android.IntentIntegrator
+import kotlinx.android.synthetic.main.elemento_lista_prendas.*
 import kotlinx.android.synthetic.main.lector.*
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel
 import org.imaginativeworld.whynotimagecarousel.listener.CarouselListener
@@ -28,12 +30,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = LectorBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+    //inicia escaneo
         binding.btnEscaner.setOnClickListener { initScanner() }
-
-        //binding.btnBuscar.setOnClickListener{val intent = Intent(this,Lector::class.java)
-           // startActivity(intent)}
-
+    //inicia conexion al WS
         binding.btnBuscar.setOnClickListener {val intent = Intent(this,Lector::class.java)
             startActivity(intent)
             val input1 = txtValor.text.toString().trim()
@@ -42,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 input1.length == 0 -> Toast.makeText(
                     this,
 
-                    "Escana un codigo primero prro",
+                    "Escana un codigo primero",
                     Toast.LENGTH_SHORT
 
                 ).show()
@@ -64,11 +63,11 @@ class MainActivity : AppCompatActivity() {
         //Carrusel
         val carousel: ImageCarousel = findViewById(R.id.carousel)
 
-        list.add(CarouselItem("https://st4.depositphotos.com/5857850/24567/v/600/depositphotos_245672022-stock-illustration-synthwave-retro-futuristic-landscape-with.jpg","1"))
-        list.add(CarouselItem("https://www.crushpixel.com/big-static14/preview4/retro-styled-futuristic-landscape-with-1654535.jpg","2"))
-        list.add(CarouselItem("https://image.freepik.com/vector-gratis/fondo-paisaje-futurista-estilo-retro_52683-17906.jpg","3"))
-        list.add(CarouselItem("https://image.freepik.com/vector-gratis/fondo-paisaje-futurista-estilo-retro_23-2148254281.jpg","4"))
-        list.add(CarouselItem("https://image.freepik.com/vector-gratis/fondo-paisaje-retro-futurista-sol_52683-19326.jpg","5"))
+        list.add(CarouselItem("https://c8.alamy.com/compes/t67ryj/conjunto-de-ropa-de-los-ninos-para-el-muchacho-los-pantalones-y-camisa-azul-sobre-fondo-de-madera-fotografia-en-color-horizontal-t67ryj.jpg","1"))
+        list.add(CarouselItem("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAigL11PZN-MG1-4xZfJfkvP7KU2QnxBI4Iw&usqp=CAU","2"))
+        list.add(CarouselItem("https://stylesatlife.com/wp-content/uploads/2017/01/Bright-and-Dark-Colored-Blue-Jeans-with-Shades.jpg.webp","3"))
+        list.add(CarouselItem("https://c8.alamy.com/compes/t67rxn/conjunto-de-ropa-de-los-ninos-para-el-muchacho-los-pantalones-y-camisa-azul-sobre-fondo-de-madera-fotografia-en-color-horizontal-t67rxn.jpg","4"))
+
 
         carousel.addData(list)
 
@@ -80,7 +79,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
+//Inicia Metodo del WS
 
 inner class getCitiesOfCountry : AsyncTask<String, String, String>() {
     //inner class getCitiesOfCountry : AsyncTask<Int, Int, String>() {  --> WSLocal Calculadora
@@ -98,12 +97,21 @@ inner class getCitiesOfCountry : AsyncTask<String, String, String>() {
         b.putString("x",aux)
         intent.putExtras(b)
         startActivity(intent)
+
+/*
+        fun String.toWords() = trim().splitToSequence(' ').filter { it.isNotEmpty() }.toList()
+        var aux3 = aux?.toWords()
+        var aux4 = aux3?.get(6)
+        val imgByte: ByteArray = aux4?.toByteArray() ?: ByteArray(255)
+        val bmp = BitmapFactory.decodeByteArray(imgByte, 0, imgByte.size)
+        ImgPrenda.setImageBitmap(bmp)
+*/
         return response //retorna el resultado
     }
 }
 
 
-
+//Regresa datos de scaner
     private fun initScanner(){
         IntentIntegrator(this).initiateScan()
     }
