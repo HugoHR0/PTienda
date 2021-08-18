@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Catalogo2</string>
+    <string name="app_name">Store Manager</string>
     <string name="nombre">Nombre: %1s</string>
     <string name="talla">Talla: %1s</string>
     <string name="precio">Precio: $%1s</string>

@@ -98,14 +98,7 @@ inner class getCitiesOfCountry : AsyncTask<String, String, String>() {
         intent.putExtras(b)
         startActivity(intent)
 
-/*
-        fun String.toWords() = trim().splitToSequence(' ').filter { it.isNotEmpty() }.toList()
-        var aux3 = aux?.toWords()
-        var aux4 = aux3?.get(6)
-        val imgByte: ByteArray = aux4?.toByteArray() ?: ByteArray(255)
-        val bmp = BitmapFactory.decodeByteArray(imgByte, 0, imgByte.size)
-        ImgPrenda.setImageBitmap(bmp)
-*/
+
         return response //retorna el resultado
     }
 }
